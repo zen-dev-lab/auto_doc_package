@@ -2,10 +2,11 @@
 Automatic Documentation Generation for OpenApiSpex.
 
 Auto Doc allows you to generate almost complete OpenApiSpex documenation in the span of a couple minutes.
-The only requirements are following the standard **_"directory hierarchy"_** and **_"naming convention"_** in your project.
+The only requirements are following the standard _**"directory hierarchy"**_ and **_"naming convention"_** in your project.
 #  
 # Installation
 We'll need `Jason` and `HTTPoison` to format the data and do the API calls.
+
 ```elixir
 {:jason, "~> 1.2"},
 {:httpoison, "~> 2.0"},
@@ -38,16 +39,18 @@ The first function to be run is called `gen_example_data_file` and takes two arg
 
 <img width="643" alt="Screenshot 2024-03-11 at 14 46 57" src="https://github.com/zen-dev-lab/auto_doc/assets/49829807/3ff43e56-f306-42e6-886c-78daacbe2deb">
 
-As you can see, upon executing the function, the JSON file we spoke of earlier has been generated. When you open it, you’ll see two types of keys. The first type is called _special keys_ starting and ending with `__`. They shouldn’t be touched if you want everything to work properly.
+As you can see, upon executing the function, the JSON file we spoke of earlier has been generated. When you open it, you’ll see two types of keys. The first type is called _special keys_ starting and ending with `__`. They shouldn’t be touched if you want everything to work properly.
 
 The second type is operation keys and as you probably already guessed, they have the names of your controller actions which don’t yet have documentation.
+<img width="967" alt="Screenshot 2024-03-11 at 14 49 34" src="https://github.com/zen-dev-lab/auto_doc/assets/49829807/995e7388-a796-49b9-88fd-9349a24b1b5a">
 
 The most optimal approach here is to paste the HTTP Response payloads for each action as values next to their corresponding keys.
+<img width="652" alt="Screenshot 2024-03-11 at 14 52 16" src="https://github.com/zen-dev-lab/auto_doc/assets/49829807/3125cb6d-be71-4055-a61c-9a6ef2e1f806">
 
 After completing this step, you’ll have to run the second function which will generate your files. It takes one parameter which corresponds to the files we need to generate documentation for.
 
 Since we passed the response payloads, simply run the following: 
-```shell
+```elixir
 AutoDocPackage.Requests.gen_api_spex(:response)
 ```
 
@@ -60,7 +63,7 @@ Now, let’s do the same for the params and operations.
 This time, you have to paste the http request payloads analogically to what we did earlier in the JSON file and delete the keys corresponding to the actions which shouldn’t have params, e.g. the `GET` requests.
 
 Run 
-```shell
+```elixir
 AutoDocPackage.Requests.gen_api_spex(:params)
 ```
 
@@ -69,10 +72,12 @@ What’s left to do now is to generate the `operations.ex` file and here we have
 
 When running the function generating the file, it’ll add a default error file and specialised `errors.ex` file related to your controller. The default error file is the following: `documentation/errors/not_authenticated.ex`
 
+<img width="189" alt="Screenshot 2024-03-11 at 16 16 08" src="https://github.com/zen-dev-lab/auto_doc/assets/49829807/458866ba-f595-44e0-9df2-f583f345e455">
+
 If the error files already exist, nothing will happen so they’ll not be overwritten.
 
 To generate the `operations.ex` file, just run 
-```shell
+```elixir
 AutoDocPackage.Requests.gen_api_spex(:operations)
 ```
 
@@ -80,6 +85,8 @@ Voila! Your documentation is good to go.
 
 All that’s left is to replace the description for each field with your custom ones.
 You can search for the places you need to change something by looking for the keyword `TOWRITE` inside your project.
+
+<img width="354" alt="Screenshot 2024-03-11 at 18 36 59" src="https://github.com/zen-dev-lab/auto_doc/assets/49829807/a15fe73d-4779-4eb2-938d-5a3cc49d70df">
 
 Important:
 * Any unrecognized types of data will have value of `:unknown` which should be changed manually.
@@ -95,7 +102,7 @@ Important:
 * **registration**
   * Register on our [site](http://localhost:4000/) via Github OAuth
 * #### Set `.env` variables
-  * Go to your [dashboard](http://localhost:4000/auth/dashboard) and copy the **_token_**.
+  * Go to your [dashboard](http://localhost:4000/auth/dashboard) and copy the _**token**_.
     Then add its value to your ENV Variable
     ```env
     AUTO_DOC_USER_TOKEN="your-user-token-here"
@@ -103,7 +110,7 @@ Important:
   * Go to [Github Tokens](https://github.com/settings/tokens?type=beta) page and create your Private Access Token
     *  click 'Generate new token'
     *  Give it 'Public Repositories (read-only)' access
-    *  Create and copy your **_token_**.
+    *  Create and copy your _**token**_.
       Then add its value to your ENV Variable
       ```env
       GITHUB_ACCESS_TOKEN="your-access-token-here"
@@ -113,7 +120,7 @@ Important:
 ## 2. Commands
 There are two functions which will do all the magic. Both are part of the `AutoDocPackage.Requests` module.
 
-You can either use them as-is in the **_Interactive Elixir shell_**(`iex -S mix`) or you can turn them into a `mix` command in your `mix.exs` file.
+You can either use them as-is in the _**Interactive Elixir shell**_(`iex -S mix`) or you can turn them into a `mix` command in your `mix.exs` file.
 
 The first function is called `gen_example_data_file/2` and takes two arguments.
 The first argument is the _relative path_ to your desired Documentation directory.
@@ -471,5 +478,4 @@ Now that you're familiar with the commands names, arguments and structure in gen
       end
       ```
       * If you don't have `errors.ex` files yet, they'll be automatically generated as well. If they exist, nothing will happen.
-      
         <img width="189" alt="Screenshot 2024-03-11 at 16 16 08" src="https://github.com/zen-dev-lab/auto_doc/assets/49829807/6175b47b-0343-4d08-b177-54f6433e4b8e">
