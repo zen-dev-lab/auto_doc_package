@@ -2,11 +2,14 @@
 Automatic Documentation Generation for OpenApiSpex.
 
 Auto Doc allows you to generate almost complete OpenApiSpex documenation in the span of a couple minutes.
-The only requirements are following the standard _**"directory hierarchy"**_ and **_"naming convention"_** in your project.
+The only requirements are following the standard **_"directory hierarchy"_** and **_"naming convention"_** in your project.
 #  
 # Installation
+We'll need `Jason` and `HTTPoison` to format the data and do the API calls.
 ```elixir
-{:auto_doc_package, "~> 0.1"}
+{:jason, "~> 1.2"},
+{:httpoison, "~> 2.0"},
+{:auto_doc_package, "~> 0.1"},
 ```
 #  
 # Configuration
