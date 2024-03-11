@@ -9,7 +9,7 @@ We'll need `Jason` and `HTTPoison` to format the data and do the API calls.
 ```elixir
 {:jason, "~> 1.2"},
 {:httpoison, "~> 2.0"},
-{:auto_doc_package, "~> 0.1"},
+{:auto_doc_package, git: "https://github.com/zen-dev-lab/auto_doc_package"}
 ```
 #  
 # Configuration
@@ -95,7 +95,7 @@ Important:
 * **registration**
   * Register on our [site](http://localhost:4000/) via Github OAuth
 * #### Set `.env` variables
-  * Go to your [dashboard](http://localhost:4000/auth/dashboard) and copy the _**token**_.
+  * Go to your [dashboard](http://localhost:4000/auth/dashboard) and copy the **_token_**.
     Then add its value to your ENV Variable
     ```env
     AUTO_DOC_USER_TOKEN="your-user-token-here"
@@ -103,7 +103,7 @@ Important:
   * Go to [Github Tokens](https://github.com/settings/tokens?type=beta) page and create your Private Access Token
     *  click 'Generate new token'
     *  Give it 'Public Repositories (read-only)' access
-    *  Create and copy your _**token**_.
+    *  Create and copy your **_token_**.
       Then add its value to your ENV Variable
       ```env
       GITHUB_ACCESS_TOKEN="your-access-token-here"
@@ -113,7 +113,7 @@ Important:
 ## 2. Commands
 There are two functions which will do all the magic. Both are part of the `AutoDocPackage.Requests` module.
 
-You can either use them as-is in the _**Interactive Elixir shell**_(`iex -S mix`) or you can turn them into a `mix` command in your `mix.exs` file.
+You can either use them as-is in the **_Interactive Elixir shell_**(`iex -S mix`) or you can turn them into a `mix` command in your `mix.exs` file.
 
 The first function is called `gen_example_data_file/2` and takes two arguments.
 The first argument is the _relative path_ to your desired Documentation directory.
