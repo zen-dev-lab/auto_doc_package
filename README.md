@@ -100,9 +100,9 @@ Important:
 #  
 ## 1. Registration, Auth, ENV Variables retrieval.
 * **registration**
-  * Register on our [site](http://localhost:4000/) via Github OAuth
+  * Register on our [site](https://auto-doc.fly.dev/) via Github OAuth
 * #### Set `.env` variables
-  * Go to your [dashboard](http://localhost:4000/auth/dashboard) and copy the _**token**_.
+  * Go to your [dashboard](https://auto-doc.fly.dev/auth/dashboard) and copy the _**token**_.
     Then add its value to your ENV Variable
     ```env
     AUTO_DOC_USER_TOKEN="your-user-token-here"

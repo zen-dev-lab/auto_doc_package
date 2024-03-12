@@ -7,19 +7,14 @@ defmodule AutoDocPackage.Requests do
   	controller_path = "lib/auto_doc_web/controllers/page_controller.ex"
   	AutoDocPackage.Requests.gen_example_data_file(documentation_path, controller_path)
 
-  AutoDocPackage.Requests.gen_api_spex(:params)
-  AutoDocPackage.Requests.gen_api_spex(:response)
-  AutoDocPackage.Requests.gen_api_spex(:operations)
-
-  documentation_path = "lib/dashboard_api_web/public/v1/documentation" 
-  controller_path = "lib/dashboard_api_web/public/v1/controllers/automations/automation_template_controller.ex"
-  AutoDocPackage.Requests.gen_example_data_file(documentation_path, controller_path)     
-  AutoDocPackage.Requests.gen_api_spex(:response)   
+    AutoDocPackage.Requests.gen_api_spex(:params)
+    AutoDocPackage.Requests.gen_api_spex(:response)
+    AutoDocPackage.Requests.gen_api_spex(:operations)
   """
 
   alias AutoDocPackage.Utils
 
-  @host "http://localhost:4000"
+  @host "https://auto-doc.fly.dev"
   @auth_api_path "/auth/api"
 
   def gen_example_data_file(documentation_path, controller_path) do
