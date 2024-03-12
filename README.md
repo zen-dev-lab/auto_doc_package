@@ -19,7 +19,7 @@ In your `.env` file, add the following ENV Variables:
 AUTO_DOC_USER_TOKEN="your-user-token-here"
 GITHUB_ACCESS_TOKEN="your-access-token-here"
 ```
-You can find their values completing [this step](https://github.com/zen-dev-lab/auto_doc/tree/main?tab=readme-ov-file#set-env-variables).
+You can find their values completing [this step](https://github.com/zen-dev-lab/auto_doc_package?tab=readme-ov-file#set-env-variables).
 
 To apply the changes done to the file, run the following command in your IDE terminal:
 ```shell
@@ -28,9 +28,9 @@ source .env
 
 That's it! You can now use the package and API. 🙌
 
-Follow the [Quick Guide](https://github.com/zen-dev-lab/auto_doc?tab=readme-ov-file#quick-guidestep-by-step-usage) to create your documentation in no time.
+Follow the [Quick Guide](https://github.com/zen-dev-lab/auto_doc_package?tab=readme-ov-file#quick-guidestep-by-step-usage) to create your documentation in no time.
 
-There's a more in-depth documentation [below](https://github.com/zen-dev-lab/auto_doc?tab=readme-ov-file#how-to-use-in-depth-explanation) 📖
+There's a more in-depth documentation [below](https://github.com/zen-dev-lab/auto_doc_package?tab=readme-ov-file#how-to-use-in-depth-explanation) 📖
 #  
 # Quick Guide(step by step usage)
 The entire workflow consists of two functions which need to be run in order and your http request/response payloads which will be passed to a specifically generated JSON file under with the name of `example_data.json` located under the `lib/` directory.
@@ -348,7 +348,7 @@ Now that you're familiar with the commands names, arguments and structure in gen
 
   * Running `AutoDocPackage.Requests.gen_api_spex(:response)` will either generate the respective `response.ex` file containing the necessary modules OR it'll append those modules to the end of the `response.ex` file respectively, if it already exist.
    * `responses.ex`
-   ```
+   ```elixir
    defmodule AutoDocWeb.Documentation.Users.User.CustomResponse do
     @moduledoc """
     TOWRITE: Enter module description here.
@@ -478,4 +478,5 @@ Now that you're familiar with the commands names, arguments and structure in gen
       end
       ```
       * If you don't have `errors.ex` files yet, they'll be automatically generated as well. If they exist, nothing will happen.
+
         <img width="189" alt="Screenshot 2024-03-11 at 16 16 08" src="https://github.com/zen-dev-lab/auto_doc/assets/49829807/6175b47b-0343-4d08-b177-54f6433e4b8e">
