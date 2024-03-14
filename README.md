@@ -37,15 +37,17 @@ The entire workflow consists of two functions which need to be run in order and 
 
 The first function to be run is called `gen_example_data_file` and takes two arguments. The first one is the relative path to the documentation directory and the second one is the relative path to the controller you want documentation for.
 
-<img width="643" alt="Screenshot 2024-03-11 at 14 46 57" src="https://github.com/zen-dev-lab/auto_doc/assets/49829807/3ff43e56-f306-42e6-886c-78daacbe2deb">
+![image](https://github.com/zen-dev-lab/auto_doc_package/assets/49829807/78146b0d-9ad3-42ef-8a7b-abaaa3c86804)
 
 As you can see, upon executing the function, the JSON file we spoke of earlier has been generated. When you open it, you’ll see two types of keys. The first type is called _special keys_ starting and ending with `__`. They shouldn’t be touched if you want everything to work properly.
 
 The second type is operation keys and as you probably already guessed, they have the names of your controller actions which don’t yet have documentation.
-<img width="967" alt="Screenshot 2024-03-11 at 14 49 34" src="https://github.com/zen-dev-lab/auto_doc/assets/49829807/995e7388-a796-49b9-88fd-9349a24b1b5a">
+
+![image](https://github.com/zen-dev-lab/auto_doc_package/assets/49829807/e3607cb6-1451-4a1c-8537-30202521d67f)
 
 The most optimal approach here is to paste the HTTP Response payloads for each action as values next to their corresponding keys.
-<img width="652" alt="Screenshot 2024-03-11 at 14 52 16" src="https://github.com/zen-dev-lab/auto_doc/assets/49829807/3125cb6d-be71-4055-a61c-9a6ef2e1f806">
+
+![image](https://github.com/zen-dev-lab/auto_doc_package/assets/49829807/8e121bee-7958-44b4-8331-effadc3e78a3)
 
 After completing this step, you’ll have to run the second function which will generate your files. It takes one parameter which corresponds to the files we need to generate documentation for.
 
@@ -72,7 +74,7 @@ What’s left to do now is to generate the `operations.ex` file and here we have
 
 When running the function generating the file, it’ll add a default error file and specialised `errors.ex` file related to your controller. The default error file is the following: `documentation/errors/not_authenticated.ex`
 
-<img width="189" alt="Screenshot 2024-03-11 at 16 16 08" src="https://github.com/zen-dev-lab/auto_doc/assets/49829807/458866ba-f595-44e0-9df2-f583f345e455">
+![image](https://github.com/zen-dev-lab/auto_doc_package/assets/49829807/0bdc1164-cc95-4874-9167-b984ed2cb41e)
 
 If the error files already exist, nothing will happen so they’ll not be overwritten.
 
@@ -86,7 +88,7 @@ Voila! Your documentation is good to go.
 All that’s left is to replace the description for each field with your custom ones.
 You can search for the places you need to change something by looking for the keyword `TOWRITE` inside your project.
 
-<img width="354" alt="Screenshot 2024-03-11 at 18 36 59" src="https://github.com/zen-dev-lab/auto_doc/assets/49829807/a15fe73d-4779-4eb2-938d-5a3cc49d70df">
+![image](https://github.com/zen-dev-lab/auto_doc_package/assets/49829807/a965bce9-2914-4cf8-acc8-cc386d461a71)
 
 Important:
 * Any unrecognized types of data will have value of `:unknown` which should be changed manually.
@@ -478,5 +480,6 @@ Now that you're familiar with the commands names, arguments and structure in gen
       end
       ```
       * If you don't have `errors.ex` files yet, they'll be automatically generated as well. If they exist, nothing will happen.
+     
+      ![image](https://github.com/zen-dev-lab/auto_doc_package/assets/49829807/b60866eb-bee0-4103-857d-ef4c91cb7f05)
 
-        <img width="189" alt="Screenshot 2024-03-11 at 16 16 08" src="https://github.com/zen-dev-lab/auto_doc/assets/49829807/6175b47b-0343-4d08-b177-54f6433e4b8e">
