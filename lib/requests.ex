@@ -74,7 +74,7 @@ defmodule AutoDocPackage.Requests do
   end
 
   # Common structure parts of the GEN_API_SPEX function patterns
-  defp do_gen_api_spex(type, encoded_example_data_file_content, write_modes \\ []) do
+  defp do_gen_api_spex(type, encoded_example_data_file_content, write_modes) do
     %{
       "__documentation_path__" => documentation_path,
       "__controller_path__" => controller_path
@@ -166,7 +166,7 @@ defmodule AutoDocPackage.Requests do
           Utils.run_mix_format(file_path)
         end)
 
-      {:ok, %HTTPoison.Response{status_code: status_code, body: body}} ->
+      {:ok, %HTTPoison.Response{status_code: _status_code, body: body}} ->
         {:error, body}
 
       {:error, reason} ->
@@ -179,6 +179,6 @@ defmodule AutoDocPackage.Requests do
     authorization_header = {"Authorization", "Bearer #{System.get_env("GITHUB_ACCESS_TOKEN")}"}
     user_token_header = {"Token", System.get_env("AUTO_DOC_USER_TOKEN")}
 
-    headers = [content_type_header, authorization_header, user_token_header]
+    [content_type_header, authorization_header, user_token_header]
   end
 end
