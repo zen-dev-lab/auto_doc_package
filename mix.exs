@@ -21,8 +21,8 @@ defmodule AutoDocPackage.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:jason, "~> 1.2"},
-      {:httpoison, "~> 1.8"}
+      #{:jason, "~> 1.2"},
+      #{:httpoison, "~> 2.0"}
     ]
   end
 end
