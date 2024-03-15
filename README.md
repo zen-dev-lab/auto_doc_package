@@ -3,6 +3,125 @@ Automatic Documentation Generation for OpenApiSpex.
 
 Auto Doc allows you to generate almost complete OpenApiSpex documenation in the span of a couple minutes.
 The only requirements are following the standard _**"directory hierarchy"**_ and **_"naming convention"_** in your project.
+Note: It works on MacOS but still hasn't been tested on Windows(their backwards path structure will cause an issue)
+
+# Installation
+Add the following dependencies to `mix.exs` file `deps/0` function.
+
+Note: We'll need `Jason` and `HTTPoison` to format the data and do the API calls.
+
+```elixir
+{:jason, "~> 1.2"},
+{:httpoison, "~> 2.0"},
+{:auto_doc_package, git: "https://github.com/zen-dev-lab/auto_doc_package"}
+```
+
+# Registration
+1. Go to [auto-doc.fly.dev](https://auto-doc.fly.dev/)
+2. Click _**Sign in**_
+3. Register via Github OAuth
+4. Being forwarded to your _**dashboard**_ page where a personal user `token` can be seen(important for later)
+
+![Register via Github](https://github.com/zen-dev-lab/auto_doc_package/assets/49829807/ef0db07f-c992-4581-ab12-46275b50b26c)
+
+# Personal Github Access Token
+For Authorizing API calls to _**Auto Doc**_, you'll need a personal access token.
+1. Navigate to `settings/tokens` page [here](https://github.com/settings/tokens?type=beta)
+2. Click _**Generate new token**_
+3. Give it some name and set your expiration date to 90 days or more
+4. Click _**Generate token**_
+5. Copy your personal access token (important in for the next step)
+
+![Github access token](https://github.com/zen-dev-lab/auto_doc_package/assets/49829807/79f594af-9359-462f-b196-2ed386075cfe)
+
+# Setup ENV Variables
+In your `.env` file, add the following ENV Variables:
+```env
+# The Token shown in your Dashboard
+export AUTO_DOC_USER_TOKEN="your-user-token-here"
+# The Github Access Token we just created in the previous step
+export GITHUB_ACCESS_TOKEN="your-access-token-here"
+```
+
+To apply the changes done to the file, run the following command in your IDE terminal:
+```shell
+source .env
+```
+
+That's it! You can now use the package and API. 🙌
+
+# AutoDocPackage usage
+* First, start your **Interactive Elixir shell** by running the following command in your IDE's terminal
+  ```shell
+  iex -S mix
+  ```
+* Then, we need to pick the documentation directory and the controller to create OpenApiSpex docs for.
+* Copy the relative paths to both the _directory_ and _the controller file_ and assign them to variables.
+  ```shell
+  documentation_path = "example/lib/example_web/documentation"
+  controller_path = "example/lib/example_web/controllers/page_controller.ex"
+  ```
+* Now, execute the function written below
+  ```shell
+  AutoDocPackage.Requests.gen_example_data_file(documentation_path, controller_path)
+  ```
+* Notice that under the `lib/` directory a new file with the name `example_data.json` has been created.
+* Open it and check its content.
+* It contains two types of keys:
+  * _special keys_(start and end with `__`) which musn't be edited.
+  * _operation keys_(each key corresponds to a new undocumented action in your controller)
+
+### TODO: Insert image here of all the steps mentioned above as well as the file's content
+
+* With the `example_data.json` file present, what's left to do is add the params/response payloads for each action key
+and then run the `gen_api_spex/1` commmand with the corresponding argument.
+  * There are three possible arguments for that command
+    * `:params` or `"params"` -> states that params payloads have been passed and should create the new Params modules 
+    * `:response` or `"response"` -> states that response payloads have been passed and should create the new Response modules
+    * `:operations` or `"operations"` ->  states that the new Params/Response modules have been created and should add the new operation functions (and their aliases)
+  * Generate **response** modules
+    * Pass the response payloads as described earlier and run
+      ```shell
+      AutoDocPackage.Requests.gen_api_spex(:response)
+      ```
+    * Then, your `response.ex` file will be generated or the new modules will be appended to the existing file.
+    * ### TODO: Add image showing the filled payload and the generated module
+  * Generate **params** modules:
+    * Same as the previous step but you pass the params payloads and run the command with `:params` argument
+      ```shell
+      AutoDocPackage.Requests.gen_api_spex(:params)
+      ``` 
+    * **Important!** -> For actions which don't have params payload(such as `GET` requests), then remove the respective keys from the `example_data.json` file to avoid unnecessary Params modules generation.
+    * ### TODO: Add image showing the filled payload and the generated module
+  * Generate operations module/functions:
+    * After completing the previous two steps, simply run
+      ```shell
+       AutoDocPackage.Requests.gen_api_spex(:operations)
+      ```
+    * You'll notice that the new operations functions have been added to the end of your `operations.ex` file's `Operations` module and the params/response aliases have also been included.
+    * You're done! Your OpenApiSpex Documentation is completed
+    * ### TODO: Add image showing the newly generated functions and the added aliases to the top of the Operations module
+   
+  * Important!
+    * Use as detailed payloads as possible since they're the most important part of types/values generation and mapping. 
+    * Descriptions are still written manually and for that case, search for the `TOWRITE` keyword and change all occurences with your custom text.
+    * If a type wasn't recognized upon generation, it'll have value of `:unknown` and should be changed to the proper value manually.
+    * In params payload, if one of the main keys matches the model(schema)'s field name, its `default` and `values` will be mapped and also be added to the API Docs automatically.
+    * ### TODO: Add image of the model field mapping to the OpenApiSpex data generation
+
+
+----
+----
+# THE OLD and not-so-reader-friendly DOCUMENTATION IS WRITTEN BELOW. FEEL FREE TO SKIP IT.
+----
+----
+
+
+# Auto Doc
+Automatic Documentation Generation for OpenApiSpex.
+
+Auto Doc allows you to generate almost complete OpenApiSpex documenation in the span of a couple minutes.
+The only requirements are following the standard _**"directory hierarchy"**_ and **_"naming convention"_** in your project.
 #  
 # Installation
 We'll need `Jason` and `HTTPoison` to format the data and do the API calls.
