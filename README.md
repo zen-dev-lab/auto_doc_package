@@ -1,9 +1,16 @@
-# Auto Doc
-Automatic Documentation Generation for OpenApiSpex.
+# Auto Doc: Effortless OpenApiSpex Documentation
+Welcome to Auto Doc, your ultimate solution for generating comprehensive OpenApiSpex documentation in minutes!
 
-Auto Doc allows you to generate almost complete OpenApiSpex documenation in the span of a couple minutes.
-The only requirements are following the standard _**"directory hierarchy"**_ and **_"naming convention"_** in your project.
-Note: It works on MacOS but still hasn't been tested on Windows(their backwards path structure will cause an issue)
+With Auto Doc, gone are the days of spending endless hours crafting API documentation. Simply adhere to our standardized directory hierarchy and naming conventions within your project, and let Auto Doc handle the rest.
+
+Key Features:
+
+* Lightning-fast Documentation: Generate almost complete OpenApiSpex documentation in just a couple of minutes.
+* MacOS Compatibility: Auto Doc is fully compatible with MacOS. While it hasn't been tested on Windows yet, rest assured, we're working on it!
+* Seamless Integration: Easily integrate Auto Doc into your workflow via its intuitive API.
+* Subscription-based Service: Enjoy the convenience of a subscription-based microservice,
+  offering you a solid foundation for writing professional API Docs while saving you valuable time and resources, all for less than the cost of an hour's work (10€) per month.
+* Upgrade your API documentation experience with Auto Doc today and witness unparalleled efficiency and professionalism in your projects.
 
 # Installation
 Add the following dependencies to `mix.exs` file `deps/0` function.
@@ -132,4 +139,8 @@ and then run the `gen_api_spex/1` commmand with the corresponding argument.
       ![towrite example](https://github.com/zen-dev-lab/auto_doc_package/assets/49829807/6fbd8227-bbb8-4b53-9455-ed057bf9f42d)
 
     * If a type wasn't recognized upon generation, it'll have value of `:unknown` and should be changed to the proper value manually.
+    
+      ![type unknown](https://github.com/zen-dev-lab/auto_doc_package/assets/49829807/c88ff841-3a43-4d02-9d17-ed3c5f92da91)
+
+      
     * In params payload, if one of the main keys matches the model(schema)'s field name, its `default` and `values` will be mapped and also be added to the API Docs automatically.
