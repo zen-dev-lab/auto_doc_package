@@ -65,8 +65,8 @@ That's it! You can now use the package and API. 🙌
 * Then, we need to pick the documentation directory and the controller to create OpenApiSpex docs for.
 * Copy the relative paths to both the _directory_ and _the controller file_ and assign them to variables.
   ```shell
-  documentation_path = "example/lib/example_web/documentation"
-  controller_path = "example/lib/example_web/controllers/page_controller.ex"
+  documentation_path = "auto_doc/lib/auto_doc_web/documentation"
+  controller_path = "auto_doc/lib/auto_doc_web/controllers/users/user_controller.ex"
   ```
   
   ![copy relative paths](https://github.com/zen-dev-lab/auto_doc_package/assets/49829807/d97ad914-26c0-470e-ab7a-5448dfd88cf9)
@@ -142,5 +142,16 @@ and then run the `gen_api_spex/1` commmand with the corresponding argument.
     
       ![type unknown](https://github.com/zen-dev-lab/auto_doc_package/assets/49829807/c88ff841-3a43-4d02-9d17-ed3c5f92da91)
 
-      
     * In params payload, if one of the main keys matches the model(schema)'s field name, its `default` and `values` will be mapped and also be added to the API Docs automatically.
+      
+      Note: It's not 100% foolproof, but we're working on improving it.
+
+    * Supports Documentation versioning in the path and module in format: `your_app_web/access_type/version/...`
+      ```elixir
+      # Private V2 example | access_type = "private" ; version = "v2"
+      documentation_path = "auto_doc/lib/auto_doc_web/private/v2/documentation"
+      controller_path = "auto_doc/lib/auto_doc_web/private/v2/controllers/users/user_controller.ex"
+      # Public V1 example | access_type = "public" ; version = "v1"
+      documentation_path = "auto_doc/lib/auto_doc_web/public/v1/documentation"
+      controller_path = "auto_doc/lib/auto_doc_web/public/v1/controllers/users/user_controller.ex"
+      ```
