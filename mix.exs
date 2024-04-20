@@ -31,9 +31,8 @@ defmodule AutoDocPackage.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      # TODO: Remove `optional: true` if it doesn't work out.
-      {:jason, "~> 1.2", optional: true},
-      {:httpoison, "~> 2.2", optional: true},
+      {:jason, "~> 1.2"},
+      {:httpoison, "~> 2.2"},
       {:ex_doc, "~> 0.14", only: :dev, runtime: false}
     ]
   end
