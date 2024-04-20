@@ -38,13 +38,10 @@ defmodule AutoDocPackage.MixProject do
 
   defp description() do
     """
-    "Auto Doc" is a microservice used for generating API documentation based on OpenApiSpex format for Elixir projects.
-    The package "AutoDocPackage" is used as way to send/receive requests to/from the "Auto Doc" server
-    and generate the API Docs directories and files filled with data, nested inside the respected `/documentation` directory.
-
-    More information can be found at:
-    AutoDoc GitHub: #{@source_url}
-    AutoDoc Website: #{@homepage_url}
+    The package "AutoDocPackage" is used by the "Auto Doc" microservice
+    for generating API documentation based on OpenApiSpex format for Elixir projects.
+    and generate the API Docs directories and files filled with data,
+    nested inside the respected `/documentation` directory.
     """
   end
 
