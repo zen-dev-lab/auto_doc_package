@@ -12,9 +12,9 @@ defmodule AutoDocPackage do
   The package requires `:jason` and `:httpoison` to run while your project requires `:open_api_spex` as a documentation tool.
 
   - Dependencies:
-    - `[:jason](https://hexdocs.pm/jason/Jason.html)`
-    - `[:httpoison](https://hexdocs.pm/httpoison/HTTPoison.html)`
-    - `[:open_api_spex](https://hexdocs.pm/open_api_spex/3.4.0/readme.html)`
+    - [`:jason`](https://hexdocs.pm/jason/Jason.html)
+    - [`:httpoison`](https://hexdocs.pm/httpoison/HTTPoison.html)
+    - [`:open_api_spex`](https://hexdocs.pm/open_api_spex/3.4.0/readme.html)
 
   ## Installation
   Add `auto_doc_package` to your list of dependencies in `mix.exs`:
@@ -34,5 +34,9 @@ defmodule AutoDocPackage do
   - The microservice itself works on a subscription basis.
   - The monthly subscription fee is 10€.
   - The product is currently in its initial phase and is being actively developed.
+
+  ## Modules
+  - `AutoDocPackage.Requests` - Used for generating the `example_data.json` file and the API Docs files based on the data provided by the `example_data.json` file.
+  - `AutoDocPackage.Utils` - Contains utility functions used by the `AutoDocPackage` package.
   """
 end

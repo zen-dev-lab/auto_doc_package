@@ -16,8 +16,10 @@ defmodule AutoDocPackage.Utils do
   Returns the name of the project container.
 
   ## Examples
+    ```elixir
     iex> project_container_name()
     "auto_doc"
+    ```
   """
   def project_container_name, do: Path.absname("../") |> String.split("/") |> Enum.at(-2)
 
@@ -25,11 +27,13 @@ defmodule AutoDocPackage.Utils do
   Converts a path to a module name.
 
   ## Examples
+    ```elixir
     iex> path_to_module_name("auto_doc/lib/auto_doc/utils.ex")
     "AutoDoc.Utils"
 
     iex> path_to_module_name("auto_doc/test/auto_doc/utils_test.exs")
     "AutoDoc.UtilsTest"
+    ```
   """
   def path_to_module_name(path) when is_binary(path) do
     paths_to_remove = [
@@ -52,11 +56,13 @@ defmodule AutoDocPackage.Utils do
   Converts a module name to a path.
 
   ## Examples
+    ```elixir
     iex> module_name_to_path("AutoDoc.Utils")
     "auto_doc/lib/auto_doc/utils.ex"
 
     iex> module_name_to_path("AutoDoc.UtilsTest")
     "auto_doc/test/auto_doc/utils_test.exs"
+    ```
   """
   def module_name_to_path(module_name, suffix \\ "ex") do
     category =
@@ -88,11 +94,13 @@ defmodule AutoDocPackage.Utils do
   Checks if a module name is a view module.
 
   ## Examples
+    ```elixir
     iex> is_view_module?("AutoDoc.PageView")
     true
 
     iex> is_view_module?("AutoDoc.PageController")
     false
+    ```
   """
   def is_view_module?(module_name) when is_binary(module_name),
     do: String.match?(module_name, ~r/View\z/)
@@ -101,11 +109,13 @@ defmodule AutoDocPackage.Utils do
   Checks if a module name is a controller module.
 
   ## Examples
+    ```elixir
     iex> is_controller_module?("AutoDoc.PageController")
     true
 
     iex> is_controller_module?("AutoDoc.PageView")
     false
+    ```
   """
   def is_controller_module?(module_name) when is_binary(module_name),
     do: String.match?(module_name, ~r/Controller\z/)
@@ -114,11 +124,13 @@ defmodule AutoDocPackage.Utils do
   Checks if a module name is a test module.
 
   ## Examples
+    ```elixir
     iex> is_test_module?("AutoDoc.UtilsTest")
     true
 
     iex> is_test_module?("AutoDoc.Utils")
     false
+    ```
   """
   def is_test_module?(module_name) when is_binary(module_name),
     do: String.match?(module_name, ~r/Test\z/)
@@ -127,6 +139,7 @@ defmodule AutoDocPackage.Utils do
   Checks if a module name is a controller test module.
 
   ## Examples
+    ```elixir
     iex> is_controller_test_module?("AutoDocWeb.PageControllerTest")
     true
 
@@ -140,11 +153,13 @@ defmodule AutoDocPackage.Utils do
   Checks if a module name is a view test module.
 
   ## Examples
+    ```elixir
     iex> is_view_test_module?("AutoDocWeb.PageViewTest")
     true
 
     iex> is_view_test_module?("AutoDocWeb.PageView")
     false
+    ```
   """
   def is_view_test_module?(module_name) when is_binary(module_name),
     do: String.match?(module_name, ~r/ViewTest\z/)
@@ -153,6 +168,7 @@ defmodule AutoDocPackage.Utils do
   Converts a string to PascalCase.
 
   ## Examples
+    ```elixir
     iex> to_pascal_case("helloWorld")
     "HelloWorld"
 
@@ -165,6 +181,7 @@ defmodule AutoDocPackage.Utils do
     iex> to_pascal_case("Invalid_Type")
     ** (ArgumentError)
     ** ...
+    ```
   """
   def to_pascal_case(value) when is_binary(value) do
     cond do
@@ -197,6 +214,7 @@ defmodule AutoDocPackage.Utils do
   Converts a string to camelCase.
 
   ## Examples
+    ```elixir
     iex> to_camel_case("helloWorld")
     "helloWorld"
 
@@ -209,6 +227,7 @@ defmodule AutoDocPackage.Utils do
     iex> to_camel_case("Invalid_Type")
     ** (ArgumentError)
     ** ...
+    ```
   """
   def to_camel_case(value) when is_binary(value) do
     cond do
@@ -241,6 +260,7 @@ defmodule AutoDocPackage.Utils do
   Converts a string to snake_case.
 
   ## Examples
+    ```elixir
     iex> to_snake_case("helloWorld")
     "hello_world"
 
@@ -253,6 +273,7 @@ defmodule AutoDocPackage.Utils do
     iex> to_snake_case("Invalid_Type")
     ** (ArgumentError)
     ** ...
+    ```
   """
   def to_snake_case(value) when is_binary(value) do
     cond do
@@ -306,11 +327,13 @@ defmodule AutoDocPackage.Utils do
   Runs `mix format` on given file.
 
   ## Examples
+    ```elixir
     iex> run_mix_format("lib/auto_doc/utils.ex")
     {:ok, "File formatted successfully."}
 
     iex> run_mix_format("lib/auto_doc/utils.ex")
     {:error, "File formatting failed. File: \"lib/auto_doc/utils.ex\""}
+    ```
   """
   def run_mix_format(file_path) do
     {_output, status} = System.cmd("mix", ["format", "#{@file_path_prefix}#{file_path}"])
@@ -363,6 +386,7 @@ defmodule AutoDocPackage.Utils do
   Checks if a file exists.
 
   ## Examples
+    ```elixir
     iex> file_exists?("lib/auto_doc/utils.ex")
     true
 
@@ -371,6 +395,7 @@ defmodule AutoDocPackage.Utils do
 
     iex> file_exists?("lib/auto_doc/not_existing.ex")
     false
+    ```
   """
   def file_exists?(file_path) do
     file_path
@@ -383,11 +408,13 @@ defmodule AutoDocPackage.Utils do
   Parses the file path from relative to usable type.
     
   ## Examples
+    ```elixir
     iex> parse_file_path("lib/auto_doc/utils.ex")
     "auto_doc/lib/auto_doc/utils.ex"
 
     iex> parse_file_path("auto_doc/lib/auto_doc/utils.ex")
     "auto_doc/lib/auto_doc/utils.ex"
+    ```
   """
   def parse_file_path(file_path) do
     if String.starts_with?(file_path, "lib/"),
@@ -399,11 +426,13 @@ defmodule AutoDocPackage.Utils do
   Guess the possible documentation's `operations.ex` file path.
 
   ## Examples
+    ```elixir
     iex> operations_path("auto_doc/lib/auto_doc/documentation", "lib/auto_doc_web/controllers/page_controller.ex")
     "auto_doc/lib/auto_doc_web/documentation/page/operations.ex"
 
     iex> operations_path("auto_doc/lib/auto_doc/private/v2/documentation", "lib/auto_doc_web/private/v2/controllers/page_controller.ex")
     "auto_doc/lib/auto_doc_web/private/v2/documentation/page/operations.ex"
+    ```
   """
   def operations_path(documentation_path, controller_path) do
     documentation_path
@@ -419,8 +448,10 @@ defmodule AutoDocPackage.Utils do
   for the `params.ex`, `responses.ex`, `operations.ex` file paths.
 
   ## Examples
+    ```elixir
     iex> doc_path("auto_doc/lib/auto_doc/documentation", "lib/auto_doc_web/controllers/page_controller.ex")
     "auto_doc/lib/auto_doc_web/documentation/page"
+    ```
   """
   def doc_path(documentation_path, controller_path) do
     documentation_path
@@ -436,8 +467,10 @@ defmodule AutoDocPackage.Utils do
   Generates the file path for the documentation file.
 
   ## Examples
+    ```elixir
     iex> doc_file_path("auto_doc/lib/auto_doc/documentation", "lib/auto_doc_web/controllers/page_controller.ex", "params.ex")
     "auto_doc/lib/auto_doc_web/documentation/page/params.ex"
+    ```
   """
   def doc_file_path(documentation_path, controller_path, file_name) do
     "#{doc_path(documentation_path, controller_path)}/#{file_name}"

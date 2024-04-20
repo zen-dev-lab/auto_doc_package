@@ -44,10 +44,12 @@ defmodule AutoDocPackage.Requests do
     - `{:error, reason}` - If the file fails to be generated (`reason` here could be format failure or http response body/reason)
 
   ## Example
+    ```elixir
     iex> documentation_path = "auto_doc/lib/auto_doc_web/documentation"
     iex> controller_path = "lib/auto_doc_web/controllers/page_controller.ex"
     iex> AutoDocPackage.Requests.gen_example_data_file(documentation_path, controller_path)
       {:ok, "File formatted successfully."}
+    ```
   """
   def gen_example_data_file(documentation_path, controller_path) do
     documentation_path = Utils.parse_file_path(documentation_path)
@@ -92,8 +94,10 @@ defmodule AutoDocPackage.Requests do
     - `{:error, reason}` - If the file fails to be generated (`reason` here could be format failure or http response body/reason)
 
   ## Example
+    ```elixir
     iex> AutoDocPackage.Requests.gen_api_spex(:params)
       {:ok, "File formatted successfully."}
+    ```
   """
   def gen_api_spex(type)
       when type in [:params, :response, :operations, "params", "response", "operations"] do
