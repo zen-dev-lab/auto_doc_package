@@ -1,9 +1,10 @@
 defmodule AutoDocPackage.MixProject do
   use Mix.Project
 
-  @version "0.1.0"
+  @version "0.1.1"
   @source_url "https://github.com/zen-dev-lab/auto_doc_package"
   @homepage_url "https://auto-doc.fly.dev"
+  @project_name "auto_doc_package"
 
   def project do
     [
@@ -14,7 +15,7 @@ defmodule AutoDocPackage.MixProject do
       deps: deps(),
       description: description(),
       package: package(),
-      name: "Auto Doc",
+      name: @project_name,
       source_url: @source_url,
       homepage_url: @homepage_url
     ]
@@ -30,8 +31,9 @@ defmodule AutoDocPackage.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:jason, "~> 1.2"},
-      {:httpoison, "~> 2.2"},
+      # TODO: Remove `optional: true` if it doesn't work out.
+      {:jason, "~> 1.2", optional: true},
+      {:httpoison, "~> 2.2", optional: true},
       {:ex_doc, "~> 0.14", only: :dev, runtime: false}
     ]
   end
@@ -47,11 +49,12 @@ defmodule AutoDocPackage.MixProject do
 
   defp package() do
     [
-      name: "auto_doc_packagee",
+      name: @project_name,
       # These are the default files included in the package
       files: ~w(lib .formatter.exs mix.exs README* LICENSE* CHANGELOG*),
       licenses: ["CC-BY-NC-ND-4.0"],
-      links: %{"GitHub" => "https://github.com/zen-dev-lab/auto_doc_package"}
+      links: %{"GitHub" => "https://github.com/zen-dev-lab/auto_doc_package"},
+      maintainers: ["Deyan Kostadinov"]
     ]
   end
 end

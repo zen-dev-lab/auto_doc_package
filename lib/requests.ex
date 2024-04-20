@@ -1,22 +1,54 @@
 defmodule AutoDocPackage.Requests do
   @moduledoc """
-  	Requests for the AutoDoc package
+  The `AutoDocPackage.Requests` module is used for generating the `example_data.json` file
+  and the API Docs files based on the data provided by the `example_data.json` file.
 
-  	## For Manual Tests via Terminal
-  	documentation_path = "auto_doc/lib/auto_doc_web/documentation"
-  	controller_path = "lib/auto_doc_web/controllers/page_controller.ex"
-  	AutoDocPackage.Requests.gen_example_data_file(documentation_path, controller_path)
+  The module is used for the communication between the `AutoDoc` microservice and your Elixir project.
 
-    AutoDocPackage.Requests.gen_api_spex(:params)
-    AutoDocPackage.Requests.gen_api_spex(:response)
-    AutoDocPackage.Requests.gen_api_spex(:operations)
+  More information about the `AutoDoc` microservice can be found at:
+  - [Auto Doc](https://auto-doc.fly.dev)
+  - [Github README](https://github.com/zen-dev-lab/auto_doc_package?tab=readme-ov-file#auto-doc-effortless-openapispex-documentation).
   """
+
+  # ## For Manual Tests via Terminal
+  # documentation_path = "auto_doc/lib/auto_doc_web/documentation"
+  # controller_path = "lib/auto_doc_web/controllers/page_controller.ex"
+  # AutoDocPackage.Requests.gen_example_data_file(documentation_path, controller_path)
+
+  # AutoDocPackage.Requests.gen_api_spex(:params)
+  # AutoDocPackage.Requests.gen_api_spex(:response)
+  # AutoDocPackage.Requests.gen_api_spex(:operations)
 
   alias AutoDocPackage.Utils
 
   @host "https://auto-doc.fly.dev"
   @auth_api_path "/auth/api"
 
+  @doc """
+  Generate the `example_data.json` file containing the special keys(`__documentation_path__`, `__controller_path__`)
+  and the keys corresponding to the API actions which do not yet have Documentation.
+
+  ## Extra Info:
+    - `example_data.json` is located under `/lib` directory of the project.
+    - the special keys MUST NOT be changed.
+    - the keys corresponding to the API actions are empty upon creation `{}` but
+      they should be filled by you(the user) with their respective HTTP Request/Response payload data.
+    - The data stored inside the `example_data.json` file is used for generating the API Docs files by the `gen_api_spex` function.
+
+  ## Parameters
+    - `documentation_path` - The relative path to the documentation folder.
+    - `controller_path` - The relative path to the controller file.
+
+  ## Returns
+    - `{:ok, "File formatted successfully."}` - If the file is successfully generated (since it's formatted in the end)
+    - `{:error, reason}` - If the file fails to be generated (`reason` here could be format failure or http response body/reason)
+
+  ## Example
+    iex> documentation_path = "auto_doc/lib/auto_doc_web/documentation"
+    iex> controller_path = "lib/auto_doc_web/controllers/page_controller.ex"
+    iex> AutoDocPackage.Requests.gen_example_data_file(documentation_path, controller_path)
+      {:ok, "File formatted successfully."}
+  """
   def gen_example_data_file(documentation_path, controller_path) do
     documentation_path = Utils.parse_file_path(documentation_path)
     controller_path = Utils.parse_file_path(controller_path)
@@ -48,6 +80,21 @@ defmodule AutoDocPackage.Requests do
     end
   end
 
+  @doc """
+  Generate the API Docs files based on the data provided by the `example_data.json` file.
+  Used for generating the API Docs files for the Params, Response, and Operations. (+ Errors)
+
+  ## Parameters
+    - `type` - The type of the API Docs file to be generated. Must be one of [:params, :response, :operations, "params", "response", "operations"].
+
+  ## Returns
+    - `{:ok, "File formatted successfully."}` - If the file is successfully generated (since it's formatted in the end)
+    - `{:error, reason}` - If the file fails to be generated (`reason` here could be format failure or http response body/reason)
+
+  ## Example
+    iex> AutoDocPackage.Requests.gen_api_spex(:params)
+      {:ok, "File formatted successfully."}
+  """
   def gen_api_spex(type)
       when type in [:params, :response, :operations, "params", "response", "operations"] do
     do_gen_api_spex(type)
