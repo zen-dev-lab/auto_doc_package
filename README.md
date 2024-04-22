@@ -16,10 +16,12 @@ Key Features:
 Add the following dependencies to `mix.exs` file `deps/0` function.
 
 Note: We'll need `Jason` and `HTTPoison` to format the data and do the API calls.
+If you are bound to a specific version of `:jason` or `:httpoison` in your own project
+which causes error in using the library, simply add `override: true` where its needed to resolve the problem.
+
+For example: `{:httpoison, "~> 1.8.2", override: true}`
 
 ```elixir
-{:jason, "~> 1.2"},
-{:httpoison, "~> 2.0"},
 {:auto_doc_package, git: "https://github.com/zen-dev-lab/auto_doc_package"}
 ```
 
@@ -155,3 +157,10 @@ and then run the `gen_api_spex/1` commmand with the corresponding argument.
       documentation_path = "auto_doc/lib/auto_doc_web/public/v1/documentation"
       controller_path = "auto_doc/lib/auto_doc_web/public/v1/controllers/users/user_controller.ex"
       ```
+
+# Developer note:
+Thank you for using the product and I hope you find it useful.
+
+I am doing my best trying to optimise and extend the functionality to simplify your workflow even more.
+
+API usage and more extended / custom API documentation functionalities are being developed at the moment and will hit live as soon as possible.

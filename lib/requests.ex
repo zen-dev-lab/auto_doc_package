@@ -51,7 +51,7 @@ defmodule AutoDocPackage.Requests do
     iex> AutoDocPackage.Requests.gen_example_data_file(documentation_path, controller_path)
     {:ok, "File formatted successfully."}
     ```
-  
+
   """
   def gen_example_data_file(documentation_path, controller_path) do
     documentation_path = Utils.parse_file_path(documentation_path)
